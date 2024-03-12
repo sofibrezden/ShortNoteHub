@@ -1,56 +1,238 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 
-{% block title %}
-Login User
-{% endblock title %}
-
-{% block body %}
-
-<style>
-    .my-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 93vh;
-        background-color: rgb(247, 241, 231);
+    <title>Login</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@400;700&display=swap');
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Open Sans', sans-serif;
+      }
+      header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+      header .logo {
+          cursor: pointer;
+          padding-top: 2rem;
+          margin-left: 3rem;
+      }
+      header .logo img {
+          width: 80%;
+      }
+      header nav ul {
+          list-style: none;
+          padding-top: 2rem;
+      }
+      header nav ul li {
+          display: inline;
+          margin-right: 3rem;
+      }
+      header nav ul li a {
+          color: hsl(238, 22%, 44%);
+          text-decoration: none;
+          position: relative;
+      }
+      header nav ul li a::after {
+          content: '';
+          width: 0%;
+          height: 0.2rem;
+          background-color: hsl(224, 93%, 58%);
+          position: absolute;
+          border-radius: 1rem;
+          bottom: -0.3rem;
+          left: 50%;
+          transition: 0.4s;
+      }
+      header nav ul li a:hover::after {
+          width: 100%;
+          left: 0;
+      }
+      body {
+          background:  hsl(240, 75%, 98%);
+          overflow: hidden;
+      }
+      .whole {
+          max-width: 440px;
+          padding: 0 20px;
+          margin: 100px auto;
+      }
+      .whole {
+          justify-content: center;
+        ;
+          margin: 100px auto;
+      }
+    .container{
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
     }
-
-    .my-content-section {
-        width: 70%;
-        border: 1px solid #000;
-        border-radius: 10px;
-        padding: 5%;
-        background-color: white;
+      .container .title{
+      font-size: 25px;
+      font-weight: 500;
+      position: relative;
     }
+    .container .title::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 30px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+      .container form {
+          padding: 30px 20px 25px 20px;
+          margin-bottom: 0; /* Remove margin */
+      }
+      .container form .row {
+          height: 45px;
+          margin-bottom: 35px;
+          position: relative;
+      }
+      .container form .row input {
+          height: 100%;
+          width: 100%;
+          padding-left: 60px;
+          padding-right: 15px;
+          border-radius: 5px;
+          outline: none;
+          border: 1px solid lightgray;
+          font-size: 16px;
+          transition: all 0.3s ease;
+      }
+      form .row input:focus {
+          border-color: #60a3f1;
+          box-shadow: inset 0 0 2px 2px rgb(26, 188, 156, 0.25);
+      }
+      .container form .row i {
+          position: absolute;
+          width: 47px;
+          height: 100%;
+          color: #fff;
+          background:  linear-gradient(135deg, #71b7e6, #9b59b6);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+          border-radius: 5px 0 0 5px;
+      }
+      .container form .bottom input {
 
-    @media screen and (max-width: 728px) {
-        .my-content-section {
-            width: 100%;
+          font-size: 18px;
+          font-weight: 500;
+          padding: 0;
+          border: 1px solid #8da8dd;
+          cursor: pointer;
+
+          animation: 0.9s ease infinite alternate running shimmer;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            background-size: 200% 100%;
+            display: inline-block;
+
+            box-shadow: -2px -2px 10px rgba(86, 71, 255, 0.5), 2px 2px 10px rgba(0, 8, 255, 0.5);
+            color: #ffffff;
+            cursor: pointer;
+
+            line-height: 20px;
+            overflow: hidden;
+
+           text-decoration: none;
+            transition: 0.4s;
+            svg {
+                left: -20px;
+                opacity: 0.5;
+                position: absolute;
+                top: -2px;
+                transition: 0.5s cubic-bezier(.5, -0.5, .5, 1.5);
+            }
+
+            &:hover svg {
+                opacity: 0.8;
+                transform: translateX(50px) scale(1.5);
+            }
+
+            &:hover {
+              background: linear-gradient(135deg, #75abcf, #b700ff);
+                transform: rotate(-2deg);
+            }
+
+
+            &:active {
+                transform: scale(0.95) rotate(-3deg);
+            }
         }
-    }
-</style>
 
-<div class="my-container">
-    <div class="my-content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">
-                    Log In
-                </legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info my-3" type="submit">Sign in</button>
+        @keyframes shimmer {
+            to {
+                background-size: 100% 100%;
+                box-shadow: -2px -2px 6px rgba(183, 65, 238, 0.5), 2px 2px 6px rgba(144, 148, 255, 0.5);
+            }
+        }
+
+
+      .signup-link {
+          text-align: center;
+          font-size: 15px;
+
+      }
+      .signup-link a {
+          text-decoration: none;
+          color: #60a3f1;
+      }
+      .signup-link a:hover {
+          text-decoration: underline;
+      }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="http://127.0.0.1:8000/"><img src="/templates/images/llogo.png" alt=""></a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="http://127.0.0.1:8000/">Home</a></li>
+        </ul>
+    </nav>
+  </header>
+    <div class="whole">
+        <div class="container">
+            <div class="title">User Login</div>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="row">
+                  <i class="fa fa-user"></i>
+                  <input type="text" name="{{ form.username.name }}" placeholder="Username" required>
+              </div>
+              <div class="row">
+                  <i class="fa fa-lock"></i>
+                  <input type="password" name="{{ form.password.name }}" placeholder="Password" required>
+              </div>
+
+                <div class="row bottom">
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+            <div class="signup-link">
+                <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
             </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Need an Account? <a href="/register/">Sign Up</a>
-            </small>
         </div>
     </div>
-</div>
+</body>
+</html>
 
-{% endblock body %}
+

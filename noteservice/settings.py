@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-n6u**gn2*t63h9wz9psl1p+^$)ql-a)0f^wvydent+^(6i66a@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".vercel.app"]
 
 
 # Application definition
@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'noteservice.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'shortnoteshub',
-        'USER': '****',
-        'PASSWORD': '***********',
+        'NAME': 'notehub',
+        'USER': 'root',
+        'PASSWORD': 'brezden1905',
         'HOST': 'localhost',  # Set to the host where your MySQL server is running
-        'PORT': '****',       # Set to the port your MySQL server is using
+        'PORT': '3306',       # Set to the port your MySQL server is using
     }
 }
 

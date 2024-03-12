@@ -6,14 +6,34 @@ from users.models import Note
 
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
-    first_name = forms.CharField(max_length=30, required=False)
-    last_name = forms.CharField(max_length=30, required=False)
+    email = forms.EmailField(
+        widget=forms.TextInput(attrs={'placeholder': 'Email'})
+    )
+    first_name = forms.CharField(
+        max_length=30, required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'First Name'})
+    )
+    last_name = forms.CharField(
+        max_length=30, required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Last Name'})
+    )
+    username = forms.CharField(
+        max_length=30, required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Username'})
+    )
+    password1 = forms.CharField(
+        max_length=8, required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Password'})
+    )
+    password2 = forms.CharField(
+        max_length=8, required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Password'})
+    )
+
 
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
-
 
 class NoteForm(forms.ModelForm):
     class Meta:

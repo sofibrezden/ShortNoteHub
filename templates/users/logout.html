@@ -1,70 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logout User</title>
+
+    <title>Logged Out</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
+        body{
+            background-color:  hsl(240, 75%, 98%);
         }
+       @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@400;700&display=swap');
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Open Sans', sans-serif;
+      }
+      header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+      header .logo {
+          cursor: pointer;
+          padding-top: 2rem;
+          margin-left: 3rem;
+      }
+      header .logo img {
+          width: 80%;
+      }
+      header nav ul {
+          list-style: none;
+          padding-top: 2rem;
+      }
+      header nav ul li {
+          display: inline;
+          margin-right: 3rem;
+      }
+      header nav ul li a {
+          color: hsl(238, 22%, 44%);
+          text-decoration: none;
+          position: relative;
+      }
+      header nav ul li a::after {
+          content: '';
+          width: 0%;
+          height: 0.2rem;
+          background-color: hsl(224, 93%, 58%);
+          position: absolute;
+          border-radius: 1rem;
+          bottom: -0.3rem;
+          left: 50%;
+          transition: 0.4s;
+      }
+      header nav ul li a:hover::after {
+          width: 100%;
+          left: 0;
+      }
 
-        .big-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 93vh;
-            background-color: #F5E9E4;
-        }
+      .whole {
+          max-width: 440px;
+          padding: 0 20px;
+          margin: 100px auto;
+      }
+      .whole {
+          justify-content: center;
+        ;
+          margin: 100px auto;
+      }
+    .container{
+      max-width: 500px;
+      width: 100%;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+      .container .title{
+      font-size: 25px;
+      font-weight: 500;
+      position: relative;
+    }
+    .container .title::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 30px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
 
-        .my-container {
-            display: flex;
-            justify-content: space-around;
-            width: 90%;
-            height: 80%;
-            border: 1px solid #8D7A7A;
-            border-radius: 10px;
-            background-color: #FBEFE2;
-        }
 
-        .my-container-i {
-            width: 70%;
-            margin: 2%;
-            color: #8D7A7A;
+ .container .message {
+            text-align: center;
+            color:hsl(243, 87%, 12%);;
             padding: 5%;
         }
 
-        @media screen and (max-width: 728px) {
-            .my-container {
-                flex-direction: column-reverse;
+        .container .message a {
+            animation: 1.5s ease infinite alternate running shimmer;
+            background: linear-gradient(90deg, #1c82e2 0%, #6a6cec 30%, #3032bb 85%);
+            background-size: 200% 100%;
+            border: none;
+            display: inline-block;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: -2px -2px 10px rgba(86, 71, 255, 0.5), 2px 2px 10px rgba(0, 8, 255, 0.5);
+            color: #ffffff;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            overflow: hidden;
+            padding: 12px 20px;
+            position: relative;
+            text-decoration: none;
+            transition: 0.2s;
+
+            svg {
+                left: -20px;
+                opacity: 0.5;
+                position: absolute;
+                top: -2px;
+                transition: 0.5s cubic-bezier(.5, -0.5, .5, 1.5);
             }
 
-            .my-container-i {
-                width: 100%;
-                text-align: center;
+            &:hover svg {
+                opacity: 0.8;
+                transform: translateX(50px) scale(1.5);
             }
 
-            .big-container {
-                height: 95vh;
+            &:hover {
+                transform: rotate(-3deg);
+            }
+
+            &:active {
+                transform: scale(0.95) rotate(-3deg);
             }
         }
+
+        @keyframes shimmer {
+            to {
+                background-size: 100% 100%;
+                box-shadow: -2px -2px 6px rgba(29, 13, 208, 0.5), 2px 2px 6px rgba(144, 148, 255, 0.5);
+            }
+        }
+
     </style>
 </head>
+
 <body>
-    <div class="big-container">
-        <div class="my-container">
-            <div class="my-container-i">
-                <h1>Logged Out</h1>
-                <p>You have been successfully logged out of your account.</p>
-                <p>
-                    <a href="/login/" style="background-color: #FF8A80; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px;">
-                        <i class="fa fa-user"></i> Log in again
-                    </a>
-                </p>
+    <header>
+        <div class="logo">
+            <a href="#"><img src="/templates/images/llogo.png" alt=""></a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="http://127.0.0.1:8000/">Home</a></li>
+        </ul>
+        </nav>
+    </header>
+    <div class="whole">
+        <div class="container">
+            <div class="title">Logged Out</div>
+           <div class="message"><p>You have been successfully logged out of your account.</p>
+
+            <p>
+                    <a href="/login/">Log in again</a>
+                </p></div>
             </div>
         </div>
     </div>
 </body>
+
 </html>

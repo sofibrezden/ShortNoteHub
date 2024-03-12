@@ -1,228 +1,152 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-A Note Keeping
-{% endblock title %}
-
-{% block body %}
-<style>
-    .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-    }
-
-    @media screen and (max-width: 768px) {
-        .bd-placeholder-img-lg {
-            font-size: 3.5rem;
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+    <link rel="stylesheet" href="/templates/users/index.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <title>Note HUB landing page with two column layout</title>
+    <style>
+        body>footer:last-of-type {
+            background: hsl(243, 87%, 12%);
+            padding: 30px 0 5px;
         }
 
-        .carousel-caption {
-            display: flex;
-            justify-content: center;
-            flex-direction: column-reverse;
+        .attribution {
+            font-size: 11px;
+            text-align: center;
+            color: white;
         }
 
-        .heading {
-            padding-top: 0 !important;
+        .attribution a {
+            color: hsl(178, 84%, 66%);
         }
-    }
 
-    .col-lg-4 {
-        text-align: center;
-    }
+    </style>
+</head>
 
-    .carousel-caption {
-        color: white;
-        position: static;
-        height: 400px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .carousel-indicators li {
-        height: 10px;
-        width: 10px;
-        border-radius: 50%;
-        background-color: white;
-    }
-
-    .heading {
-        width: 100%;
-        padding-top: 150px;
-    }
-</style>
-
-<!--First Block-->
-<div class="container my-4 px-0">
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="carousel-caption">
-                    <div class="heading" style="background-color:rgb(180, 192, 240)">
-                        <h3>Short Note Hub welcomes you</h3>
-
+<body>
+    <!-- Header -->
+    <header>
+        {% if user.is_authenticated %}
+        <div class="logo">
+            <a href="#"><img src="/templates/images/llogo.png" alt=""></a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="/notes/">My Notes</a></li>
+            <li><a href="/logout/">Log out</a></li>
+        </ul>
+        </nav>
+        {% else %}
+        <div class="logo">
+            <a href="#"><img src="/templates/images/llogo.png" alt=""></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/register/">Sign up</a></li>
+                <li><a href="/login/">Sign In</a></li>
+            </ul>
+        </nav>
+        {% endif %}
+    </header>
+    <!-- Main -->
+    <main>
+        <!-- Main part 1 -->
+        <section class="main-1">
+            <div class="container">
+                <div class="row">
+                    <img src="templates/images/illustration-1.svg" alt="" />
+                    <div class="info">
+                        <h1>Capture Ideas Instantly</h1>
+                        <p>Welcome to ShortNote Hub, your centralized spot for jotting down
+                            thoughts and organizing information swiftly and efficiently,jot down notes, and
+                            consolidate your knowledge with seamless organization.</p>
+                        <a href="/register/" class="styled-button">Get Started</a>
                     </div>
-                    <img src="https://img.freepik.com/premium-photo/using-professional-digital-tablet-technology-write-business-work-modern-online-screen-cyberspace-communication-hand-writing-via-white-pen-lifestyle-same-laptop-computer-notebook-using_33755-9636.jpg"
-                         alt="">
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="carousel-caption">
-                    <div class="heading" style="background-color:rgb(0, 169, 137)">
-                        <h3>When everything gets Digital</h3>
-                        <p style="font-size:20px">then why not your Notes</p>
+        </section>
+        <!-- Main part 2 -->
+        <section class="main-2">
+            <div class="container">
+                <div class="row">
+                    <img src="templates/images/illustration-2.svg" alt="" />
+                    <div class="info">
+                        <h2>Stay productive, wherever you are</h2>
+                        <p>Never let location be an issue when accessing your files. Note HUB
+                            has you covered for all of your file storage needs.</p>
+                        <p>Securely share files and folders with friends, family and
+                            colleagues for live collaboration. No email attachments
+                            required!</p>
+                        <a href="/register/" class="styled-button"> See how Note Hub works</a>
+                        <div class="quote">
+                            <i class="fa fa-quote-left fa-1x"></i>
+                            <p>Note HUB has improved our team productivity by an order of
+                                magnitude. Since making the switch our team has become a
+                                well-oiled collaboration machine.</p>
+                            <div class="founder">
+                                <img src="templates/images/avatar-testimonial.jpg" alt="" />
+                                <div class="details">
+                                    <strong>Kyle Burton</strong>
+                                    <strong>Founder & CEO, Huddle</strong>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <img src="https://img.freepik.com/free-vector/notes-concept-illustration_114360-689.jpg"
-                         alt="">
+                </div>
+            </div>
+        </section>
+        <!-- CTA -->
+        <section class="cta">
+            <div class="container">
+                <div class="info">
+                    <h2>Get early access today</h2>
+                    <p>It only takes a minute to sign up and our free starter tier is
+                        extremely generous. If you have any questions, our support team
+                        would be happy to help you.</p>
+
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <div class="footer">
+            <div class="container">
+                <img src="templates/images/logo.png" alt="" />
+                <div class="footer-content">
+                    <div class="col">
+                        <div>
+                            <img src="templates/images/icon-phone.svg" alt="" />
+                            <p>Phone: +1-543-123-4567</p>
+                        </div>
+                        <div>
+                            <img src="templates/images/icon-email.svg" alt="" />
+                            <p>example@NoteHUB.com</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <a href="#">About Us</a>
+                        <a href="#">Jobs</a>
+                        <a href="#">Press</a>
+                        <a href="#">Blog</a>
+                    </div>
+                    <div class="col">
+                        <a href="#">Contact Us</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Privacy</a>
+                    </div>
+                    <div class="col">
+                        <a href="#"><i class="fa-facebook-f" aria-hidden="true"></i>Facebook</a>
+                        <a href="#"><i class="fa-twitter" aria-hidden="true"></i>Twitter</a>
+                        <a href="#"><i class="fa-instagram" aria-hidden="true"></i>Instagram</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <ol class="carousel-indicators">
-            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
-        </ol>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
-            <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
-            <span class="visually-hidden">Next</span>
-        </a>
-    </div>
+    </main>
+</body>
 
-    <!--Second Block Starts-->
-    <div class="row my-5">
-        <div class="col-lg-4">
-            <img src="https://thumbs.dreamstime.com/b/tired-employee-unable-to-cope-deadline-worried-caucasian-hipster-beard-sitting-workplace-clutching-head-missed-78531815.jpg"
-                 alt=""
-                 class="bd-placeholder-img rounded-circle" width="140"
-                 height="140" aria-label="Placeholder: 140x140" focusable="false">
-            <h2>
-                Meet all deadlines</h2>
-        </div>
-        <div class="col-lg-4">
-            <img src="https://png.pngtree.com/png-vector/20190612/ourlarge/pngtree-analyticsboardpresentationlaptopstatistics-flat-color-ic-png-image_1351465.jpg"
-                 alt="" class="bd-placeholder-img rounded-circle" width="140"
-                 height="140" aria-label="Placeholder: 140x140" focusable="false">
-            <h2>Statistics</h2>
-        </div>
-        <div class="col-lg-4">
-            <img src="https://static.vecteezy.com/system/resources/previews/000/656/819/original/computer-design-teamwork-vector.jpg"
-                 alt="" class="bd-placeholder-img rounded-circle" width="140"
-                 height="140" aria-label="Placeholder: 140x140" focusable="false">
-            <h3>Collaborative Notes</h3>
-        </div>
-    </div>
-
-    <!-- START THE FEATURETTES -->
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7">
-            <main>
-                <section>
-                    <h2>Main Features</h2>
-                    <p>Short Note Hub offers a simple and efficient way to manage your short notes. Explore its key
-                        features
-                        below:</p>
-                    <ul>
-                        <li>
-                            <h3>Easy Access to Short Notes</h3>
-                            <p>Quickly access and review your short notes whenever you need them.</p>
-                        </li>
-                        <li>
-                            <h3>Simple Note Management</h3>
-                            <p>Effortlessly add and remove notes through an intuitive interface.</p>
-                        </li>
-                        <li>
-                            <h3>Quick View and Edit</h3>
-                            <p>Instantly view and edit existing notes for fast updates.</p>
-                        </li>
-                    </ul>
-                </section>
-            </main>
-
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img src="https://images.squarespace-cdn.com/content/v1/56acc1138a65e2a286012c54/1476623769900-2KZJ2QOEW0JNCA8J27JO/unsplashlaptop7-5.jpg?format=1000w"
-                 alt="" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                 height="500" aria-label="Placeholder: 500x500" focusable="false">
-        </div>
-
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Additional Highlights</h2>
-            <ul>
-                <li>
-                    <h3>Organize with Short Lists</h3>
-                    <p>Efficiently organize your notes using short lists for better categorization.</p>
-                </li>
-                <li>
-                    <h3>Minimalistic and User-Friendly Design</h3>
-                    <p>Experience a clean and understandable design that puts simplicity at the forefront.</p>
-                </li>
-                <li>
-                    <h3>Access from Any Device</h3>
-                    <p>Enjoy the flexibility of accessing Short Note Hub from any device for on-the-go
-                        productivity.</p>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img src="https://www.copper.com/_next/image?url=https%3A%2F%2Fd2ydtwisqcxv72.cloudfront.net%2F_1200x626_crop_center-center_82_line%2F211029_How-to-take-meeting-notes-Blog.jpg&w=992&q=75"
-                 alt="" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                 height="500" aria-label="Placeholder: 500x500" focusable="false">
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7">
-            <main>
-                <section>
-                    <h2>Who Is It For?</h2>
-                    <p>Short Note Hub is designed for individuals seeking a straightforward tool to save their short
-                        notes without unnecessary complexities.</p>
-                    <p>Whether you're a student jotting down quick reminders, a professional keeping track of ideas,
-                        or anyone who values simplicity in note-taking, Short Note Hub provides an easy and efficient
-                        solution.</p>
-                </section>
-            </main>
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img src=" https://events.yorku.ca/wp-content/uploads/2023/11/pexels-fauxels-3183150_James-Robertson-scaled.jpg"
-
-                 alt="" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                 height="500" aria-label="Placeholder: 500x500" focusable="false">
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-            <h2>Key Demographics</h2>
-            <p>Our target audience includes:</p>
-            <ul>
-                <li>Students managing class assignments and study notes.</li>
-                <li>Professionals organizing thoughts, ideas, and to-do lists.</li>
-                <li>Individuals who appreciate a minimalistic approach to productivity.</li>
-                <li>Anyone in need of a hassle-free tool for short-term notekeeping.</li>
-            </ul>
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img src="https://img.freepik.com/premium-photo/business-concept-smart-checklist-virtual-screen-modern-office-man-uses-pen-make-notes-about-exploring-topics-digital-form-check-document-sheet-laptop-work_27634-1584.jpg?w=360"
-                 alt="" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                 height="200" aria-label="Placeholder: 500x500" focusable="false">
-        </div>
-    </div>
-
-</div>
-</div>
-{% endblock body %}
+</html>
